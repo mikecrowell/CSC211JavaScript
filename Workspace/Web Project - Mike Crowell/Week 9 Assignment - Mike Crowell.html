@@ -1,0 +1,673 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<title>Mike Crowell - Week 9 Assignment</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<link rel="stylesheet" type="text/css" href="proj9.css" />
+<style type="text/css">
+.style1 {
+	text-align: right;
+}
+</style>
+<script type="text/javascript">
+
+var resultsArray = [3,2,2,3,4,1,2,1,2,2];
+
+function reset(){
+	document.getElementById('headerMessage').value = "";
+	document.getElementById('headerMessage2').value = "";
+	
+	for(var i = 1; i <= resultsArray.length; i++){
+	
+		var fieldName = "";
+	
+		fieldName = "answer" + i;
+		for(j=0;j<document.getElementsByName(fieldName).length;j++){
+			document.getElementsByName(fieldName)[j].checked = false;
+		}
+		fieldName = "message" + i;
+		document.getElementById(fieldName).value = "";
+	}
+}
+
+
+function getResults () {
+
+	var fieldName = "";
+	var answers;
+	var isComplete = true;
+	var score = 0;
+	
+	for(var i = 1; i <= resultsArray.length; i++){
+		fieldName = "message" + i;
+		document.getElementById(fieldName).value = "";
+	}
+
+	for(var i = 0; i < resultsArray.length; i++){
+	
+		fieldName = "answer" + (i+1);
+		answers = document.getElementsByName(fieldName);
+		isChecked = false;
+		for(j=0;j<answers.length;j++){
+			if(answers[j].checked != null){
+				if(answers[j].checked == true){
+					isChecked = true;
+				}
+			}
+		}
+		
+		if(!isChecked){
+			fieldName = "message" + (i+1);
+			document.getElementById(fieldName).value = "Please answer question # " + (i + 1);
+			isComplete = false;	
+		}
+	}
+	
+	if(isComplete){
+		for(var i = 0; i < resultsArray.length; i++){
+		
+			fieldName = "answer" + (i+1);
+			answers = document.getElementsByName(fieldName);
+			userChecked = 0;
+			for(j=0;j<answers.length;j++){
+				if(answers[j].checked != null){
+					if(answers[j].checked == true){
+						userChecked = j;
+					}
+				}
+			}
+			
+			fieldName = "message" + (i+1);
+			if(answers[userChecked].value == resultsArray[i]){
+				document.getElementById(fieldName).value = "Correct!";
+				score += 1;
+			}else{
+				document.getElementById(fieldName).value = "Incorrect.  The correct answer is #" + resultsArray[i];
+			}
+		}
+		document.getElementById('headerMessage').value = "Your total score = " + score;
+		if(score <= 4){
+			document.getElementById('headerMessage2').value = "You need to watch more TV.";
+		}
+		if(score > 4 && score <= 7){
+			document.getElementById('headerMessage2').value = "Not bad.  Keep trying.";
+		}
+		if(score > 7){
+			document.getElementById('headerMessage2').value = "Congratulations, you are a couch potato!!";
+		}
+	}
+	
+}
+
+</script>
+</head>
+<body onload="reset();">
+
+<div id="outer">
+
+	<div id="upbg"></div>
+
+	<div id="inner">
+
+		<div id="header">
+			<h1 style="left: 20px; top: 22px"><span>CSC </span>211</h1>
+			<h2>Mike Crowell</h2>
+		</div>
+	
+		<div id="splash"><br />
+			<div id="innersplash" class="style1">
+				<br />
+				TV Show Quiz</div>
+		</div>
+	
+		<div id="menu" style="left: 0px; top: 0px">
+			<ul>
+				<li class="first"><a href="default.htm">HOME</a></li>
+				<li><a href="Week 5 Assignment - Mike Crowell.html">Mortgage</a></li>
+				<li><a href="Week 6 Assignment - Mike Crowell.html">Calculator</a></li>
+				<li><a href="week 7 assignment - Mike Crowell.html">RPS</a></li>
+				<li><a href="Week 8 Assignment - Mike Crowell.html">Ball</a></li>
+				<li><a href="Week 9 Assignment - Mike Crowell.html">Quiz</a></li>
+				<li><a href="Week 10 Assignment - Mike Crowell.html">Word Game</a></li>
+				<li><a href="mailto:mcrowell@carrollu.edu">Contact</a></li>
+			</ul>
+		</div>
+	
+
+		<div id="primarycontent">
+			<h2>TV Show Quiz</h2>
+			<p>
+				<input class="display" type="text" id="headerMessage" readonly="readonly" size="50" style="font-weight:bold; color:red; font-size:large; text-align:left;"/>
+				<input class="display" type="text" id="headerMessage2" readonly="readonly" size="40" style="font-weight:bold; color:red; font-size:large; text-align:left;"/>
+			</p>			
+			<!-- primary content start -->
+			<div class="post">
+				<div class="header">
+					
+				</div>
+				<div class="content">
+					<img src="images/1.gif" class="picA floatleft" alt="" />
+					<p>In which cartoon is Ariel the daughter of King Triton who embarks on adventures with her pals Sebastian and Flounder?  
+					</p>			
+					<table>
+						<tr>
+							<td style="text-align:right">
+								<input name="answer1" type="radio" value="1" />									
+							</td>
+							<td>
+								1) Jem & The HoloGrams
+							</td>
+						</tr>
+						<tr>
+							<td style="text-align:right">
+								<input name="answer1" type="radio" value="2"/>
+							</td>
+							<td>
+								2) Mighty Mouse
+							</td>
+						</tr>		
+						<tr>
+							<td style="text-align:right">
+								<input name="answer1" type="radio" value="3" />
+							</td>
+							<td>
+								3) The Little Mermaid							
+							</td>
+						</tr>
+						<tr>
+							<td style="text-align:right">
+								<input name="answer1" type="radio" value="4" />
+							</td>
+							<td>
+								4) The Pink Panther & Sons 									
+							</td>
+						</tr>			
+					</table>
+					<br/>
+ 	
+				</div>			
+				<div class="footer">
+					<p style="text-align:center">
+						<input class="display" type="text" id="message1" readonly="readonly" size="50" style="font-weight:bold; color:red"/>
+					</p>				
+				</div>
+			</div>
+			
+			<div class="post">
+				<div class="header">
+					
+				</div>
+				<div class="content">
+					<img src="images/2.gif" class="picA floatleft" alt="" />
+					<p>Which tv show begins in the year 2257 and is a story of hope for a galaxy without war? 
+					</p>
+					<table>
+						<tr>
+							<td style="text-align:right">
+								<input name="answer2" type="radio" value="1" />									
+							</td>
+							<td>
+								1) The Adventures of Lois & Clark
+							</td>
+						</tr>
+						<tr>
+							<td style="text-align:right">
+								<input name="answer2" type="radio" value="2" />
+							</td>
+							<td>
+								2) Babylon 5
+							</td>
+						</tr>		
+						<tr>
+							<td style="text-align:right">
+								<input name="answer2" type="radio" value="3"/>
+							</td>
+							<td>
+								3) Fantasy Island								
+							</td>
+						</tr>
+						<tr>
+							<td style="text-align:right">
+								<input name="answer2" type="radio" value="4"/>
+							</td>
+							<td>
+								4) Battlestar Galactica								
+							</td>
+						</tr>			
+					</table>
+  					<br/>
+				</div>			
+				<div class="footer">
+					<p style="text-align:center">
+						<input class="display" type="text" id="message2" readonly="readonly" size="50" style="font-weight:bold; color:red"/>
+					</p>				
+				</div>
+			</div>
+			
+			<div class="post">
+				<div class="header">
+					
+				</div>
+				<div class="content">
+					<img src="images/3.gif" class="picA floatleft" alt="" />
+					<p>The gang hung out at The Regal Beagle in which tv show?  
+					</p>
+					<table>
+						<tr>
+							<td style="text-align:right">
+								<input name="answer3" type="radio" value="1" />									
+							</td>
+							<td>
+								1) I Love Lucy
+							</td>
+						</tr>
+						<tr>
+							<td style="text-align:right">
+								<input name="answer3" type="radio" value="2" />
+							</td>
+							<td>
+								2) Three's Company
+							</td>
+						</tr>		
+						<tr>
+							<td style="text-align:right">
+								<input name="answer3" type="radio" value="3" />
+							</td>
+							<td>
+								3) Gomer Pyle							
+							</td>
+						</tr>
+						<tr>
+							<td style="text-align:right">
+								<input name="answer3" type="radio" value="4"/>
+							</td>
+							<td>
+								4) Hogan's Heros								
+							</td>
+						</tr>			
+					</table>
+   					<br/>
+				</div>			
+				<div class="footer">
+					<p style="text-align:center">
+						<input class="display" type="text" id="message3" readonly="readonly" size="50" style="font-weight:bold; color:red"/>
+					</p>				
+				</div>
+			</div>
+
+			<div class="post">
+				<div class="header">
+					
+				</div>
+				<div class="content">
+					<img src="images/4.gif" class="picA floatleft" alt="" />
+					<p>Jerry O'Connell plays the part of Quinn Mallory in which tv show?  
+					</p>
+					<table>
+						<tr>
+							<td style="text-align:right">
+								<input name="answer4" type="radio" value="1" />									
+							</td>
+							<td>
+								1) 7th Heaven
+							</td>
+						</tr>
+						<tr>
+							<td style="text-align:right">
+								<input name="answer4" type="radio" value="2" />
+							</td>
+							<td>
+								2) Party of Five
+							</td>
+						</tr>		
+						<tr>
+							<td style="text-align:right">
+								<input name="answer4" type="radio" value="3" />
+							</td>
+							<td>
+								3) Sliders								
+							</td>
+						</tr>
+						<tr>
+							<td style="text-align:right">
+								<input name="answer4" type="radio" value="4" />
+							</td>
+							<td>
+								4) Dallas								
+							</td>
+						</tr>			
+					</table>
+					<br/>
+				</div>			
+				<div class="footer">
+					<p style="text-align:center">
+						<input class="display" type="text" id="message4" readonly="readonly" size="50" style="font-weight:bold; color:red"/>
+					</p>				
+				</div>
+			</div>
+
+			<div class="post">
+				<div class="header">
+					
+				</div>
+				<div class="content">
+					<img src="images/5.gif" class="picA floatleft" alt="" />
+					<p>Millionaire Bruce Wayne and his ward, Dick Grayson, live at stately Wayne Manor with Alfred their butler in which tv show? 
+					</p>
+					<table>
+						<tr>
+							<td style="text-align:right">
+								<input name="answer5" type="radio" value="1"/>									
+							</td>
+							<td>
+								1) Key West
+							</td>
+						</tr>
+						<tr>
+							<td style="text-align:right">
+								<input name="answer5" type="radio" value="2" />
+							</td>
+							<td>
+								2) Life Goes On
+							</td>
+						</tr>		
+						<tr>
+							<td style="text-align:right">
+								<input name="answer5" type="radio" value="3" />
+							</td>
+							<td>
+								3) Baywatch							
+							</td>
+						</tr>
+						<tr>
+							<td style="text-align:right">
+								<input name="answer5" type="radio" value="4" />
+							</td>
+							<td>
+								4) Batman								
+							</td>
+						</tr>			
+					</table>
+	    			<br/>
+				</div>			
+				<div class="footer">
+					<p style="text-align:center">
+						<input class="display" type="text" id="message5" readonly="readonly" size="50" style="font-weight:bold; color:red"/>
+					</p>				
+				</div>
+			</div>
+
+			<div class="post">
+				<div class="header">
+					
+				</div>
+				<div class="content">
+					<img src="images/6.gif" class="picA floatleft" alt="" />
+					<p>Which cartoon involved a crime-sovling Great Dane? 
+					</p>
+					<table>
+						<tr>
+							<td style="text-align:right">
+								<input name="answer6" type="radio" value="1" />									
+							</td>
+							<td>
+								1) Scooby Doo Where Are You?
+							</td>
+						</tr>
+						<tr>
+							<td style="text-align:right">
+								<input name="answer6" type="radio" value="2"/>
+							</td>
+							<td>
+								2) The Hair Bear Bunch
+							</td>
+						</tr>		
+						<tr>
+							<td style="text-align:right">
+								<input name="answer6" type="radio" value="3" />
+							</td>
+							<td>
+								3) The Perils of Penelope Pitstop								
+							</td>
+						</tr>
+						<tr>
+							<td style="text-align:right">
+								<input name="answer6" type="radio" value="4" />
+							</td>
+							<td>
+								4) The Adventures Of Rocky And Bullwinkle								
+							</td>
+						</tr>			
+					</table>
+    				<br/>
+				</div>			
+				<div class="footer">
+					<p style="text-align:center">
+						<input class="display" type="text" id="message6" readonly="readonly" size="50" style="font-weight:bold; color:red"/>
+					</p>				
+				</div>
+			</div>
+
+			<div class="post">
+				<div class="header">
+					
+				</div>
+				<div class="content">
+					<img src="images/7.gif" class="picA floatleft" alt="" />
+					<p>Oh, my God. Roz, she's the pre-eminent neophobist of the 20th century. How could you put her on hold!? 
+					</p>
+					<table>
+						<tr>
+							<td style="text-align:right">
+								<input name="answer7" type="radio" value="1"/>									
+							</td>
+							<td>
+								1) Absolutely Fabulous
+							</td>
+						</tr>
+						<tr>
+							<td style="text-align:right">
+								<input name="answer7" type="radio" value="2" />
+							</td>
+							<td>
+								2) Frasier
+							</td>
+						</tr>		
+						<tr>
+							<td style="text-align:right">
+								<input name="answer7" type="radio" value="3" />
+							</td>
+							<td>
+								3) Sanford & Son								
+							</td>
+						</tr>
+						<tr>
+							<td style="text-align:right">
+								<input name="answer7" type="radio" value="4" />
+							</td>
+							<td>
+								4) All in the Family									
+							</td>
+						</tr>			
+					</table>
+  					<br/>
+				</div>			
+				<div class="footer">
+					<p style="text-align:center">
+						<input class="display" type="text" id="message7" readonly="readonly" size="50" style="font-weight:bold; color:red"/>
+					</p>				
+				</div>
+			</div>
+
+			<div class="post">
+				<div class="header">
+					
+				</div>
+				<div class="content">
+					<img src="images/8.gif" class="picA floatleft" alt="" />
+					<p>On what long running tv game show did contestants try to guess the price of everyday items? 
+					</p>
+					<table>
+						<tr>
+							<td style="text-align:right">
+								<input name="answer8" type="radio" value="1"/>									
+							</td>
+							<td>
+								1) The Price is Right
+							</td>
+						</tr>
+						<tr>
+							<td style="text-align:right">
+								<input name="answer8" type="radio" value="2" />
+							</td>
+							<td>
+								2) Hollywood Squares
+							</td>
+						</tr>		
+						<tr>
+							<td style="text-align:right">
+								<input name="answer8" type="radio" value="3"/>
+							</td>
+							<td>
+								3) Sweethearts								
+							</td>
+						</tr>
+						<tr>
+							<td style="text-align:right">
+								<input name="answer8" type="radio" value="4"/>
+							</td>
+							<td>
+								4) Talk About									
+							</td>
+						</tr>			
+					</table>
+					<br/>
+				</div>			
+				<div class="footer">
+					<p style="text-align:center">
+						<input class="display" type="text" id="message8" readonly="readonly" size="50" style="font-weight:bold; color:red"/>
+					</p>				
+				</div>
+			</div>
+
+			<div class="post">
+				<div class="header">
+					
+				</div>
+				<div class="content">
+					<img src="images/9.gif" class="picA floatleft" alt="" />
+					<p>On what tv show was Wally's friend Eddie Haskell overly polite to adults but mean to everybody else? 
+					</p>
+					<table>
+						<tr>
+							<td style="text-align:right">
+								<input name="answer9" type="radio" value="1"/>									
+							</td>
+							<td>
+								1) The Jack Benny Program
+							</td>
+						</tr>
+						<tr>
+							<td style="text-align:right">
+								<input name="answer9" type="radio" value="2"/>
+							</td>
+							<td>
+								2) Leave It to Beaver
+							</td>
+						</tr>		
+						<tr>
+							<td style="text-align:right">
+								<input name="answer9" type="radio" value="3" />
+							</td>
+							<td>
+								3) Kate & Allie								
+							</td>
+						</tr>
+						<tr>
+							<td style="text-align:right">
+								<input name="answer9" type="radio" value="4"/>
+							</td>
+							<td>
+								4) Green Acres									
+							</td>
+						</tr>			
+					</table>
+					<br/>
+				</div>			
+				<div class="footer">
+					<p style="text-align:center">
+						<input class="display" type="text" id="message9" readonly="readonly" size="50" style="font-weight:bold; color:red"/>
+					</p>				
+				</div>
+			</div>
+
+			<div class="post">
+				<div class="header">
+					
+				</div>
+				<div class="content">
+					<img src="images/10.gif" class="picA floatleft" alt="" />
+					<p>The Soup Nazi makes the best soup in town according to what tv show? 
+					</p>
+					<table>
+						<tr>
+							<td style="text-align:right">
+								<input name="answer10" type="radio" value="1"/>									
+							</td>
+							<td>
+								1) The Munsters
+							</td>
+						</tr>
+						<tr>
+							<td style="text-align:right">
+								<input name="answer10" type="radio" value="2" />
+							</td>
+							<td>
+								2) Seinfeld
+							</td>
+						</tr>		
+						<tr>
+							<td style="text-align:right">
+								<input name="answer10" type="radio" value="3"/>
+							</td>
+							<td>
+								3) The Single Guy								
+							</td>
+						</tr>
+						<tr>
+							<td style="text-align:right">
+								<input name="answer10" type="radio" value="4"/>
+							</td>
+							<td>
+								4) Soap									
+							</td>
+						</tr>			
+					</table>
+  					<br/>
+				</div>			
+				<div class="footer">
+					<p style="text-align:center">
+						<input class="display" type="text" id="message10" readonly="readonly" size="50" style="font-weight:bold; color:red"/>
+					</p>				
+				</div>
+			</div>
+			<!-- primary content end -->
+				<p style="text-align:center">
+		        	<input type="button" class="button" value="Submit" onclick="getResults()"/>
+		    	</p>	
+		</div>
+		
+	
+		<div id="footer">
+		
+			CSC 211 Web Project by Mike Crowell
+					
+		</div>
+
+	</div>
+
+</div>
+
+</body>
+</html>

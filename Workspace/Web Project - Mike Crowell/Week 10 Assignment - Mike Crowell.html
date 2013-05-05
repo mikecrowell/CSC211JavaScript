@@ -1,0 +1,251 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<title>Mike Crowell - Week 10 Assignment</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<link rel="stylesheet" type="text/css" href="proj10.css" />
+<style type="text/css">
+.style1 {
+	text-align: right;
+}
+</style>
+<script type="text/javascript" language="javascript">
+
+var wordListArray = ['LIST', 'OF', 'WORDS', 'COMPUTER', 'CARROLL', 'CHENGLIE', 'JAVA', 'SCIENCE', 'THIS', 'THAT', 'OTHER', 'MIKE', 'BASEBALL', 'EIEIO', 'BOOK', 'COOK', 'SCHOOL', 'HELLO', 'WORLD', 'IF', 'AT', 'YELLOW', 'SUBMARINE', 'VOLLEYBALL', 'FOOTBALL'];
+var theWord;
+var theWordArray;
+var displayArray = [];
+var numRounds;
+var isGameOver;
+var isWinner;
+var guessesMade;
+
+function reset(){
+
+	document.getElementById('headerMessage').value = "";
+	document.getElementById('headerMessage2').value = "";
+	document.getElementById('letterGuess').value = "";
+	document.getElementById('wordGuess').value = "";	
+	document.getElementById('lettersUsed').value = "";
+	
+	numRounds = 10;
+	isGameOver = false;
+	isWinner = false;
+	guessesMade = "";
+	
+	var numWords = wordListArray.length;
+	var wordPointer = Math.floor(Math.random()*numWords);
+	theWord = wordListArray[wordPointer];
+	theWordArray = theWord.split("");
+	
+	var displayWord = "";
+	
+	for(var i = 0; i < theWordArray.length; i++){
+		displayArray[i] = "*";
+		displayWord += "*";	
+	}	
+	
+	document.getElementById('secretWord').value = displayWord;
+	var fileName = "images/" + numRounds + ".gif";
+	document.getElementById('round').src = fileName;	
+	
+}
+
+function guessLetter(guess){
+	var guess = guess;
+	
+	if(!isGameOver){
+		if((!(guess == null)) && (!(guess == ""))){
+			if(numRounds > 0){
+				guess = guess.toUpperCase();
+				guessesMade += guess + ', ';
+				document.getElementById('lettersUsed').value = guessesMade;
+				var displayWord = "";
+				for(var i = 0; i < theWordArray.length; i++){
+					if(guess == theWordArray[i]){
+						displayArray[i] = guess;
+					}
+					displayWord += displayArray[i];	
+				}
+				
+				if(displayWord == theWord) isWinner = true;
+											
+			}
+			
+			numRounds = numRounds - 1;
+			
+			document.getElementById('secretWord').value = displayWord;
+			var fileName = "images/" + numRounds + ".gif";
+			document.getElementById('round').src = fileName;
+			
+			if((numRounds == 0) || (isWinner)){
+				gameOver();
+			}
+			
+		}
+	}
+}
+
+function guessWord(guess){
+	var guess = guess;
+	
+	if(!isGameOver){
+		if((!(guess == null)) && (!(guess == ""))){
+			if(numRounds > 0){
+				guess = guess.toUpperCase();
+				if (guess == theWord){
+					isWinner = true;
+				}
+			}
+			
+			numRounds = numRounds - 1;
+			
+			var fileName = "images/" + numRounds + ".gif";
+			document.getElementById('round').src = fileName;			
+			
+			if((numRounds == 0) || (isWinner)){
+				gameOver();
+			}
+		}		
+	}	
+}
+
+
+function gameOver(){
+	isGameOver = true;
+	if(isWinner){
+		document.getElementById('headerMessage').value = "Congratulations!  You won!!";
+		document.getElementById('round').src = 'images/trophy.gif';
+	}else{
+		document.getElementById('headerMessage').value = "Sorry, you lose.";
+	}
+	document.getElementById('headerMessage2').value = "The correct word was: " + theWord;
+	document.getElementById('secretWord').value = theWord;
+}
+
+
+</script>
+</head>
+<body onload="reset()">
+
+<div id="outer">
+
+	<div id="upbg"></div>
+
+	<div id="inner">
+
+		<div id="header">
+			<h1 style="left: 20px; top: 22px"><span>CSC </span>211</h1>
+			<h2>Mike Crowell</h2>
+		</div>
+	
+		<div id="splash"><br />
+			<div id="innersplash" class="style1">
+				<br />
+				Word Guess Game</div>
+		</div>
+	
+		<div id="menu" style="left: 0px; top: 0px">
+			<ul>
+				<li class="first"><a href="default.htm">HOME</a></li>
+				<li><a href="Week 5 Assignment - Mike Crowell.html">Mortgage</a></li>
+				<li><a href="Week 6 Assignment - Mike Crowell.html">Calculator</a></li>
+				<li><a href="week 7 assignment - Mike Crowell.html">RPS</a></li>
+				<li><a href="Week 8 Assignment - Mike Crowell.html">Ball</a></li>
+				<li><a href="Week 9 Assignment - Mike Crowell.html">Quiz</a></li>
+				<li><a href="Week 10 Assignment - Mike Crowell.html">Word Game</a></li>
+				<li><a href="mailto:mcrowell@carrollu.edu">Contact</a></li>
+			</ul>
+		</div>
+	
+
+		<div id="primarycontent">
+			<h2>Word Guess Game</h2>
+			<p style="text-align:center">
+				<input class="display" type="text" id="headerMessage" readonly="readonly" size="50" style="font-weight:bold; color:blue; font-size:large; text-align:center;"/>
+				<input class="display" type="text" id="headerMessage2" readonly="readonly" size="40" style="font-weight:bold; color:blue; font-size:large; text-align:center;"/>
+			</p>			
+			<!-- primary content start -->
+			<div class="post">
+				<div class="header">
+					
+				</div>
+				<div class="content">
+					<img id="round" src="images/10.gif" class="picA floatleft" alt="" />
+					<p>You have ten tries to guess the word below.  
+					</p>			
+					<br/>
+
+					<table style="margin-left:auto; margin-right:auto">
+						<tr>
+							<td style="text-align:right">
+								Guess a letter:
+							</td>
+							<td>
+								<input type="text" id="letterGuess" size="1" maxlength="1"/>
+							</td>
+							<td>
+								<input type="button" class="button" value="Guess Letter" style="font-size:x-small; height:20px;" onclick="guessLetter(document.getElementById('letterGuess').value)"/>
+							</td>									
+						</tr>
+						<tr>
+							<td style="text-align:right">
+								Guess a word:
+								<br/>
+							</td>
+							<td>
+								<input type="text" id="wordGuess" size="15" maxlength="15"/>
+								<br/>
+							</td>
+							<td>
+								<input type="button" class="button" value="Guess Word" style="font-size:x-small; height:20px;" onclick="guessWord(document.getElementById('wordGuess').value)"/>
+								<br/>
+							</td>									
+						</tr>				
+					</table>
+					<br/>
+				</div>			
+				<div class="footer">
+					<br/>
+					<br/>
+					<br/>
+					<p style="text-align:center; font-size:large; color:blue">
+					The Secret Word Is:
+					</p>
+					<p style="text-align:center; font-size:xx-large">
+						<input class="display" type="text" id="secretWord" readonly="readonly" size="15" style="font-weight:bold; color:black; font-size:xx-large; text-align:center; border-style:solid; background:yellow"/>
+					</p>		
+					<p style="text-align:center; font-size:medium; color:blue">
+					Guesses Made:&nbsp;<input class="display" type="text" id="lettersUsed" readonly="readonly" size="25" style="font-weight:bold; color:black; font-size:medium; text-align:left"/>
+					</p>	
+					<br/>					
+				</div>
+			</div>
+			
+			<!-- primary content end -->
+				<br/>	
+				<br/>
+				<br/>		
+				<br/>
+				<br/>	
+				<br/>
+				<br/>					
+				<p style="text-align:center">
+		        	<input type="button" class="button" value="Reset" onclick="reset()"/>
+		    	</p>	
+		</div>
+		
+	
+		<div id="footer">
+		
+			CSC 211 Web Project by Mike Crowell
+		
+		</div>
+
+	</div>
+
+</div>
+
+</body>
+</html>

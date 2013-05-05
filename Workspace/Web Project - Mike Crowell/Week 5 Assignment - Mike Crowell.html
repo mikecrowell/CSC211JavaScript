@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<title>Mike Crowell - Week 5 Assignment</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<link rel="stylesheet" type="text/css" href="proj5.css" />
+<style type="text/css">
+.style1 {
+	text-align: right;
+}
+</style>
+<script type="text/javascript">
+
+function calculatePayment () {
+
+    var payment = "";
+    var totalInterest = "";
+    
+	document.getElementById("displayPMT").value = "";
+	document.getElementById("displayINT").value = "";
+	document.getElementById("message").value = "";
+
+
+    var reNum = /^[-+]?[0-9]+(\.[0-9]+)?$/;
+   
+    var P = document.getElementById("principle").value;
+    var r = document.getElementById("interest").value;
+	var m = document.getElementById("compounded").value;
+	var n = document.getElementById("years").value;
+
+	
+	if (!(reNum.test(P)) || !(reNum.test(r))){
+		document.getElementById("message").value = "Please enter a valid number.";
+	}else {
+		var i = (r/100)/m;
+		n = n*12;
+		
+		var temp = Math.pow(1+i,n);
+		payment = (P*(i*temp))/(temp-1);
+		
+		payment = payment.toFixed(2);
+		document.getElementById("displayPMT").value = "$" + payment;
+		
+		totalInterest = (payment * n) - P;
+		totalInterest = totalInterest.toFixed(2);
+		document.getElementById("displayINT").value = "$" + totalInterest;
+	}
+	
+}
+
+</script>
+</head>
+<body>
+
+<div id="outer">
+
+	<div id="upbg"></div>
+
+	<div id="inner">
+
+		<div id="header">
+			<h1 style="left: 20px; top: 22px"><span>CSC </span>211</h1>
+			<h2>Mike Crowell</h2>
+		</div>
+	
+		<div id="splash"><br />
+			<div id="innersplash" class="style1">
+				<br />
+				Mortgage Calculator</div>
+		</div>
+	
+		<div id="menu" style="left: 0px; top: 0px">
+			<ul>
+				<li class="first"><a href="default.htm">HOME</a></li>
+				<li><a href="Week 5 Assignment - Mike Crowell.html">Mortgage</a></li>
+				<li><a href="Week 6 Assignment - Mike Crowell.html">Calculator</a></li>
+				<li><a href="week 7 assignment - Mike Crowell.html">RPS</a></li>
+				<li><a href="Week 8 Assignment - Mike Crowell.html">Ball</a></li>
+				<li><a href="Week 9 Assignment - Mike Crowell.html">Quiz</a></li>
+				<li><a href="Week 10 Assignment - Mike Crowell.html">Word Game</a></li>
+				<li><a href="mailto:mcrowell@carrollu.edu">Contact</a></li>
+			</ul>
+		</div>
+	
+
+		<div id="primarycontent">
+		
+			<!-- primary content start -->
+		
+			<div class="post">
+				<div class="header">
+					<h3>Mortgage Calculator</h3>
+				</div>
+				<div class="content">
+					<img src="images/house.gif" class="picA floatleft" alt="" />
+					<p>This mortgage calculator will calculate your monthly mortgage payment along with the 
+					total amount of interest you will pay over the course of the loan.  To do so please enter
+					your principle mortgage amount, your annual interest rate, the number of times the interest is compounded,
+					and the length of the mortgage in years.  And then the calculate button to generate the results. 
+					</p>
+									
+						<form>
+							<p>
+							<table style="margin-left:auto; margin-right:auto">
+								<tr>
+									<td style="text-align:right">
+										Principle Borrowed:
+									</td>
+									<td>
+										<input type="text" id="principle" size="20" maxlength="20"/>
+									</td>
+								</tr>
+								<tr>
+									<td style="text-align:right">
+										Interest Rate:
+									</td>
+									<td>
+										<input type="text" id="interest" size="10" maxlength="10"/>
+									</td>
+								</tr>		
+								<tr>
+									<td style="text-align:right">
+										Compounded:
+									</td>
+									<td>
+										<select id="compounded" size="1">
+												<option value="2"> 2 </option>
+												<option value="4"> 4 </option>
+												<option value="12"> 12 </option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td style="text-align:right">
+										Length in Years:
+									</td>
+									<td>
+										<select id="years" size="1">
+												<option value="15"> 15 </option>
+												<option value="30"> 30 </option>
+										</select>
+									</td>
+								</tr>			
+							</table>
+							</p>
+							<p style="text-align:center">
+								<input class="display" type="text" id="message" readonly="readonly" size="30" style="font-weight:bold; color:red"/>
+							</p>
+							<p style="text-align:center">
+					        	<input type="button" value="Calculate" onclick="calculatePayment()"/>
+					    	</p>	
+					    </form>	
+				</div>			
+				<div class="footer">
+					<br/>
+					<table style="margin-left:auto; margin-right:auto">
+						<tr style="width:150px">
+							<td style="text-align:right; font-weight:bold">
+								Monthly Payment:&nbsp
+							</td>
+							<td style="font-weight:bold; color:black">
+								<input class="display" type="text" id="displayPMT" readonly="readonly"/>
+							</td>
+						</tr>
+						<tr style="width:150px">
+							<td style="text-align:right; font-weight:bold">
+								Total Interest Paid:&nbsp
+							</td>
+							<td style="font-weight:bold; color:black">
+								<input class="display" type="text" id="displayINT" readonly="readonly"/>
+								
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<!-- primary content end -->
+	
+		</div>
+		
+	
+		<div id="footer">
+		
+			CSC 211 Web Project by Mike Crowell
+		
+		</div>
+
+	</div>
+
+</div>
+
+</body>
+</html>

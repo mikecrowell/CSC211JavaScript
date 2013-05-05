@@ -1,0 +1,270 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<title>Mike Crowell - Web Project</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<link rel="stylesheet" type="text/css" href="proj7.css" />
+
+<script type="text/javascript">
+
+var pScore = 0;
+var cScore = 0;
+var isWinner = false;
+
+function pickForComputer(){
+	var compPick;
+	var randNum = Math.floor(Math.random()*3) + 1;
+	if(randNum == 1){
+	compPick = "p"; 
+	document.getElementById('compIcon').src= "images/paper.gif";
+	}
+	else if(randNum == 2) {
+	compPick = "r";
+	document.getElementById('compIcon').src= "images/rock.gif";
+	}
+	else {
+	compPick = "s";
+	document.getElementById('compIcon').src= "images/scissors.gif";
+	}
+	return compPick;
+}
+
+function getFullName(shortName){
+	var full;
+	if(shortName == "p") full = "Paper";
+	else if(shortName == "r") full = "Rock";
+	else full = "Scissors";
+	return full;
+}
+
+function reset(){
+	cScore = 0;
+	pScore = 0;
+	isWinner = false;
+	document.getElementById('playerScore').value = pScore;
+	document.getElementById('compScore').value = cScore;
+	document.getElementById('compIcon').src= "images/robot.gif";
+	document.getElementById('playerIcon').src= "images/rock.gif";
+	document.getElementsByName('playerPick')[0].checked = "checked";
+	document.getElementsByName('playerPick')[0].disabled = false;
+	document.getElementsByName('playerPick')[1].disabled = false;
+	document.getElementsByName('playerPick')[2].disabled = false;
+}
+
+function determineWinner(userPick){
+
+	var message = "";
+		
+	message = "Player picked: " + getFullName(userPick) +"<br/>";
+
+	//get computer's pick	
+	var compPick = pickForComputer();
+	message = message + "Computer picked: " + getFullName(compPick) +"<br/>";
+	
+	//judge the winner
+	if( (userPick == "p" && compPick == "r") || (userPick == "r" && compPick == "s") || (userPick == "s" && compPick == "p") )
+	{
+		message = message + "Player wins!" +"<br/>";
+		pScore++;
+		document.getElementById('playerScore').value = pScore;
+	}
+	
+	else if( (compPick == "p" && userPick == "r") || (compPick == "r" && userPick == "s") || (compPick == "s" && userPick == "p") )
+	{
+		message = message + "Computer wins!" +"<br/>";
+		cScore++;
+		document.getElementById('playerScore').value = pScore;
+		document.getElementById('compScore').value = cScore;
+	}
+	else {	
+		message = message + "It's a tie!" +"<br/>";
+	}
+
+	if(pScore > (cScore + 4)){
+		message = message + "PLAYER IS THE CHAMPION!" +"<br/>";
+		document.getElementById('playerIcon').src = "images/trophy.gif";
+		document.getElementById('compIcon').src= "images/sad.gif";
+		isWinner = true;
+		document.getElementsByName('playerPick')[0].disabled = true;
+		document.getElementsByName('playerPick')[1].disabled = true;
+		document.getElementsByName('playerPick')[2].disabled = true;		
+	}
+	else if(cScore > (pScore + 4)){
+		message = message + "COMPUTER IS THE CHAMPION!" +"<br/>";
+		document.getElementById('playerIcon').src = "images/sad.gif";
+		document.getElementById('compIcon').src= "images/trophy.gif";		
+		isWinner = true;
+		document.getElementsByName('playerPick')[0].disabled = true;
+		document.getElementsByName('playerPick')[1].disabled = true;
+		document.getElementsByName('playerPick')[2].disabled = true;		
+	}	
+	
+	return message;
+}
+
+function showPlayerIcon(selection){
+	
+	if(isWinner == false){
+		if(selection == 'r')
+		{
+			document.getElementById('playerIcon').src= "images/rock.gif";
+		}
+		
+		else if(selection == 'p')
+		{
+			document.getElementById('playerIcon').src = "images/paper.gif"; 
+		}
+		else {	
+			document.getElementById('playerIcon').src = "images/scissors.gif";
+		}
+		return determineWinner(selection);
+	}
+	
+}
+
+
+</script>
+
+
+<style type="text/css">
+.style1 {
+	text-align: center;
+}
+</style>
+</head>
+<body onload="reset()">
+
+<div id="outer"> <!-- begin outer -->
+
+	<div id="upbg"></div>
+
+	<div id="inner"> <!-- begin inner -->
+
+		<div id="header"> <!-- begin header -->
+			<h1 style="left: 20px; top: 22px"><span>CSC </span>211</h1>
+			<h2>Mike Crowell</h2>
+		</div> <!-- end header -->
+	
+		<div id="splash"> <!-- begin outer splash -->
+			<br />
+			<div id="innersplash" class="style1"> <!-- begin inner splash -->
+				<br />
+				Rock, Paper, Scissors
+			</div> <!-- end inner splash -->
+		</div> <!-- end outer splash -->
+	
+		<div id="menu" style="left: 0px; top: 0px"> <!-- begin menu -->
+			<ul>
+				<li class="first"><a href="default.htm">HOME</a></li>
+				<li><a href="Week 5 Assignment - Mike Crowell.html">Mortgage</a></li>
+				<li><a href="Week 6 Assignment - Mike Crowell.html">Calculator</a></li>
+				<li><a href="week 7 assignment - Mike Crowell.html">RPS</a></li>
+				<li><a href="Week 8 Assignment - Mike Crowell.html">Ball</a></li>
+				<li><a href="Week 9 Assignment - Mike Crowell.html">Quiz</a></li>
+				<li><a href="Week 10 Assignment - Mike Crowell.html">Word Game</a></li>
+				<li><a href="mailto:mcrowell@carrollu.edu">Contact</a></li>
+			</ul>		
+		</div> <!-- end menu -->
+	
+
+		<div id="primarycontent">  <!-- primary content end -->	
+
+			<div class="post"> <!-- begin Post 1 -->
+				<div class="header"> <!-- post 1 header begin -->
+					<h3>Rock, Paper, Scissors</h3>
+				<div>	
+				<span style="float:left">Player: <input class="display" type="text" id="playerScore" value="0" readonly="readonly"/></span><span style="float:right">
+				Computer: <input class="display" type="text" id="compScore" value ="0" readonly="readonly"/></span>				
+				<br/>
+				<br/>
+				</div>
+				</div> <!-- post 1 header end -->
+				<div class="content"> <!-- post 1 content begin -->
+					<p>To play a round simply choose rock, paper, or scissors. <br/>
+					Continue to make selections for each successive round.<br/>
+					Once an opponent has outscored the other by 5 or more points, a champion is declared and the game is over.</p>
+					<br/>	
+					<table style="margin-left:auto; margin-right:auto">
+						<tr style="width:150px">
+							<td style="font-weight:bold; color:black; text-align: center;">
+
+							Player
+							<td style="font-weight:bold; color:black">
+								
+							</td>
+							<td style="font-weight:bold; color:black; text-align: center;">
+								Computer
+							</td>														
+						</tr>					
+						<tr style="width:150px">
+							<td style="font-weight:bold; color:black" class="style1">
+
+							<img class="icon" id="playerIcon" src="images/rock.gif" /></td>
+							<td style="font-weight:bold; color:black">
+								
+							</td>
+							<td style="text-align:right; font-weight:bold">
+								<img class="icon" id="compIcon" src="images/robot.gif" />
+							</td>														
+						</tr>
+						<tr style="width:150px">
+							<td style="text-align:right; font-weight:bold">
+
+							</td>
+							<td style="font-weight:bold; color:black; text-align:center;">
+								
+							</td>
+							<td style="font-weight:bold; color:black">
+								
+							</td>							
+						</tr>	
+						<tr style="width:150px">
+							<td style="text-align:right; font-weight:bold">
+
+							</td>
+							<td style="font-weight:bold; color:black; text-align:center;">
+								
+							</td>
+							<td style="font-weight:bold; color:black">
+								
+							</td>							
+						</tr>						
+						<tr style="width:150px">
+							<td style="font-weight:bold; color:black" class="style1">
+								<input checked="checked" name="playerPick" type="radio" value="r" onclick="document.getElementById('matchResult').innerHTML = showPlayerIcon(this.value)"/><br/>
+								<b>Rock</b>
+							</td>
+							<td style="font-weight:bold; color:black" class="style1">
+								<input name="playerPick" type="radio" value="p" onclick="document.getElementById('matchResult').innerHTML = showPlayerIcon(this.value)"/><br/>
+								<b>Paper</b>
+							</td>
+							<td style="font-weight:bold; color:black" class="style1">
+								<input name="playerPick" type="radio" value="s" onclick="document.getElementById('matchResult').innerHTML = showPlayerIcon(this.value)"/><br/>
+								<b>Scissors</b>
+							</td>							
+						</tr>
+					</table>
+					<br/>								
+				</div> <!-- post 1 content end -->			
+				<div class="footer"> <!-- post 1 footer begin -->
+					<h2 style="text-align:center; color:black;" id="matchResult"></h2>
+				</div> <!-- post 1 footer end -->
+			</div>  <!-- end post 1 -->	
+			
+		</div>  <!-- primary content end -->
+		
+		
+	
+		<div id="footer"> <!-- begin footer -->
+		
+			CSC 211 Web Project by Mike Crowell
+		
+		</div> <!-- end footer -->
+
+	</div> <!-- end inner -->
+
+</div> <!-- end outer -->
+
+</body>
+</html>

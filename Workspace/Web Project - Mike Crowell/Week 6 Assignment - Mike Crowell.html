@@ -1,0 +1,279 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<title>Mike Crowell - Week 5 Assignment</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<link rel="stylesheet" type="text/css" href="proj6.css" />
+<style type="text/css">
+.style1 {
+	text-align: right;
+}
+</style>
+<script type="text/javascript">
+
+
+function reset () {
+
+    document.getElementById("lOperand").value = "";
+    document.getElementById("rOperand").value = "";
+    document.getElementById("result").value = "";
+    document.getElementById("message").value = "";
+}
+
+function add () {
+
+    var left = "";
+    var right = "";
+    var res = "";
+    var reNum = /^[-+]?[0-9]+(\.[0-9]+)?$/;
+   
+    left = document.getElementById("lOperand").value;
+    right = document.getElementById("rOperand").value;
+    
+    document.getElementById("message").value = "";
+	
+	if (!(reNum.test(left)) || !(reNum.test(right))){
+		document.getElementById("message").value = "Please enter a valid number.";
+	}else {
+		res = parseFloat(left) + parseFloat(right);
+		document.getElementById("result").value = left + " + " + right + " = "  + res;
+	}
+}
+
+function subtract () {
+
+    var left = "";
+    var right = "";
+    var res = "";
+    var reNum = /^[-+]?[0-9]+(\.[0-9]+)?$/;
+   
+    left = document.getElementById("lOperand").value;
+    right = document.getElementById("rOperand").value;
+    
+    document.getElementById("message").value = "";
+	
+	if (!(reNum.test(left)) || !(reNum.test(right))){
+		document.getElementById("message").value = "Please enter a valid number.";
+	}else {
+		res = parseFloat(left) - parseFloat(right);
+		document.getElementById("result").value = left + " - " + right + " = "  + res;
+	}	
+}
+
+function multiply () {
+
+    var left = "";
+    var right = "";
+    var res = "";
+    var reNum = /^[-+]?[0-9]+(\.[0-9]+)?$/;
+   
+    left = document.getElementById("lOperand").value;
+    right = document.getElementById("rOperand").value;
+    
+    document.getElementById("message").value = "";
+	
+	if (!(reNum.test(left)) || !(reNum.test(right))){
+		document.getElementById("message").value = "Please enter a valid number.";
+	}else {
+		res = parseFloat(left) * parseFloat(right);
+		document.getElementById("result").value = left + " * " + right + " = "  + res;
+	}	
+}
+
+function divide () {
+
+    var left = "";
+    var right = "";
+    var res = "";
+    var reNum = /^[-+]?[0-9]+(\.[0-9]+)?$/;
+   
+    left = document.getElementById("lOperand").value;
+    right = document.getElementById("rOperand").value;
+    
+    document.getElementById("message").value = "";
+	
+	if (right == 0){
+		document.getElementById("message").value = "You can not divide by zero.";
+	}else{
+		if (!(reNum.test(left)) || !(reNum.test(right))){
+			document.getElementById("message").value = "Please enter a valid number.";
+		}else {
+			res = parseFloat(left) / parseFloat(right);
+			document.getElementById("result").value = left + " / " + right + " = "  + res;
+		}
+	}
+}
+
+function power () {
+
+    var left = "";
+    var right = "";
+    var res = "";
+    var reNum = /^[-+]?[0-9]+(\.[0-9]+)?$/;
+   
+    left = document.getElementById("lOperand").value;
+    right = document.getElementById("rOperand").value;
+    
+    document.getElementById("message").value = "";
+	
+	if (!(reNum.test(left)) || !(reNum.test(right))){
+		document.getElementById("message").value = "Please enter a valid number.";
+	}else {
+		res = Math.pow(parseFloat(left),parseFloat(right));
+		document.getElementById("result").value = left + " to the power of " + right + " = "  + res;
+	}	
+}
+
+function random () {
+
+    var left = "";
+    var right = "";
+    var res = "";
+    var reNum = /^[-+]?[0-9]+(\.[0-9]+)?$/;
+   
+    left = document.getElementById("lOperand").value;
+    right = document.getElementById("rOperand").value;
+    
+    document.getElementById("message").value = "";
+	
+	if (!(reNum.test(left)) || !(reNum.test(right))){
+		document.getElementById("message").value = "Please enter a valid number.";
+	}else {
+		left = parseFloat(left);
+		right = parseFloat(right);
+		
+		res = Math.floor((right-left)*Math.random()) + left;
+		
+		document.getElementById("result").value = "A random number between " + left + " and " + right + " is "  + res;
+	}	
+}
+
+
+</script>
+</head>
+<body>
+
+<div id="outer">
+
+	<div id="upbg"></div>
+
+	<div id="inner">
+
+		<div id="header">
+			<h1 style="left: 20px; top: 22px"><span>CSC </span>211</h1>
+			<h2>Mike Crowell</h2>
+		</div>
+	
+		<div id="splash"><br />
+			<div id="innersplash" class="style1">
+				<br />
+				Web Calculator</div>
+		</div>
+	
+		<div id="menu" style="left: 0px; top: 0px">
+			<ul>
+				<li class="first"><a href="default.htm">HOME</a></li>
+				<li><a href="Week 5 Assignment - Mike Crowell.html">Mortgage</a></li>
+				<li><a href="Week 6 Assignment - Mike Crowell.html">Calculator</a></li>
+				<li><a href="week 7 assignment - Mike Crowell.html">RPS</a></li>
+				<li><a href="Week 8 Assignment - Mike Crowell.html">Ball</a></li>
+				<li><a href="Week 9 Assignment - Mike Crowell.html">Quiz</a></li>
+				<li><a href="Week 10 Assignment - Mike Crowell.html">Word Game</a></li>
+				<li><a href="mailto:mcrowell@carrollu.edu">Contact</a></li>
+			</ul>
+		</div>
+	
+
+		<div id="primarycontent">
+		
+			<!-- primary content start -->
+		
+			<div class="post">
+				<div class="header">
+					<h3>Web Calculator</h3>
+				</div>
+				<div class="content">
+					<img src="images/calculator_icon.jpg" class="picA floatleft" alt="" />
+					<p>This is a simple calculator that will perform one of the following operations:<br/>
+					 Addition, subtraction, multiplication, division, x to the power of y, and generating a 
+					 random number within the given range.
+					 <br/>
+					 Enter a valid real number in both the left operand and right operand fields and then 
+					 click one of the operation buttons to view the result.
+					</p>			
+						<form>
+							<table style="margin-left:auto; margin-right:auto">
+								<tr>
+									<td style="text-align:left">
+										Left Operand:
+									</td>
+									<td style="text-align:left">
+										Right Operand:
+									</td>								
+								</tr>							
+								<tr>
+									<td>
+										<input type="text" id="lOperand" size="15" maxlength="15"/>
+									</td>
+									<td>
+										<input type="text" id="rOperand" size="15" maxlength="15"/>
+									</td>									
+								</tr>
+								<tr>
+									<td style="text-align:right">
+										<input type="button" class="button" value="+" onclick="add()"/>
+									</td>
+									<td style="text-align:left">
+										<input type="button" class="button" value="-" onclick="subtract()"/>
+									</td>								
+								</tr>		
+								<tr>
+									<td style="text-align:right">
+										<input type="button" class="button" value="*" onclick="multiply()"/>
+									</td>
+									<td style="text-align:left">
+										<input type="button" class="button" value="/" onclick="divide()"/>
+									</td>									
+								</tr>
+								<tr>
+									<td style="text-align:right">
+										<input type="button" class="button" style="font-size:large" value="Pwr" onclick="power()"/>
+									</td>
+									<td style="text-align:left">
+										<input type="button" class="button" style="font-size:large" value="Rnd" onclick="random()"/>
+									</td>
+								</tr>			
+							</table>
+							<p style="text-align:center">
+								<textarea id="result" readonly="readonly" style="height: 58px; width: 207px;"></textarea>
+							</p>							
+							<p style="text-align:center">
+								<input class="display" type="text" id="message" readonly="readonly" size="30" style="font-weight:bold; color:red; text-align:center;"/>
+							</p>
+							<p style="text-align:center">
+					        	<input type="button" class="button" value="Reset" style="font-size:large" onclick="reset()"/>
+					    	</p>	
+					    </form>	
+				</div>			
+				<div class="footer">
+					<br/>
+				</div>
+			</div>
+			<!-- primary content end -->
+	
+		</div>
+		
+	
+		<div id="footer">
+		
+			CSC 211 Web Project by Mike Crowell
+		
+		</div>
+
+	</div>
+
+</div>
+
+</body>
+</html>

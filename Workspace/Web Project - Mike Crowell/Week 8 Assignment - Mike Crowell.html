@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>Week 8 Assignment - Mike Crowell</title>
+
+<script type="text/javascript">
+
+var bottom = (screen.availHeight - 250);
+var leftPos;
+var topPos;
+var top;
+var direction;
+var counter;
+
+function initialize(){
+	var ball = document.getElementById("ball");
+	leftPos = (screen.availWidth/2);
+	ball.style.left = leftPos + "px";
+	topPos = 0;
+	top = topPos + 50;
+	direction = "down";
+	counter = 1;
+	topCounter = 57;
+}
+
+function moveBall(){
+	var ball = document.getElementById("ball");
+	if(top < (bottom)){
+		ball.style.top = topPos + "px";
+		ball.style.left = leftPos + "px";
+		
+		if(direction == "down"){
+		 	topPos = topPos + counter;
+		 	if(topPos > bottom) topPos = bottom;
+		 	counter = counter + 1;
+		 }
+		else if(direction == "up"){
+		 	topPos = topPos - counter;
+		 	if(topPos < top) topPos = top;
+		 	counter = counter - 1;
+		 }
+		
+		if(topPos >= (bottom)){
+			direction = "up";	
+		}
+		else if(topPos <= (top)){
+		 	if(direction == "up"){
+			 	direction = "down";
+				counter = 0;
+				if(top < (bottom - 100))leftPos = leftPos + 2;
+				if(top < (bottom - 30)){
+					top = top + topCounter;
+					topCounter = topCounter - 2;
+				}else{
+					top = top + 1;
+					leftPos = leftPos + 5;
+				}
+			}
+		 }
+	 }else{
+	 	ball.style.top = bottom + "px";
+	 }
+	 
+}
+
+</script>
+
+
+
+</head>
+
+<body onload="initialize(); setInterval('moveBall()', 25)">
+
+<p>
+<img id="ball" src="images/basketball.jpg" alt="Basketball" style="position:absolute; left: 300px; top: 0px; height:100px; width:100px;"/>
+</p>
+
+</body>
+
+</html>
